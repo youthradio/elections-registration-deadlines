@@ -26,9 +26,7 @@
         {{ option.name || option.id || '-' }}
       </div>
     </div>
-
-    <div>
-      <select
+    <select
         ref="dropdownSelectbox"
         v-model="selectedOptionDropdown"
         class="select">
@@ -42,7 +40,6 @@
           {{ option.name || option.id || '-' }}
         </option>
       </select>
-    </div>
   </div>
 </template>
 
@@ -151,10 +148,13 @@
 
 
 <style lang="scss" scoped>
+  @import '~@/styles/variables';
+
   .select {
     // -webkit-appearance: button;
     // -moz-appearance: button;
     height: 100%;
+    width: 100%;
     border-radius: 2px;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
     // color: #555;
@@ -165,6 +165,8 @@
     white-space: nowrap;
   }
   .dropdown {
+    font: $font-type;
+    width: 100%;
     position: relative;
     display: flex;
     margin: auto;
@@ -177,15 +179,17 @@
       display: block;
       font-size: .8em;
       padding: 6px;
-      min-width: auto;
+      width: 100%;
       &:hover {
         background: #f8f8fa;
       }
     }
     .dropdown-content {
+      font: $font-type;
       position: absolute;
       background-color: #fff;
       top: 100%;
+      width: 100%;
       max-height: 350px;
       overflow-y: scroll;
       border: 1px solid #e7ecf5;
