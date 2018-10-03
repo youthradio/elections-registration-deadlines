@@ -119,6 +119,7 @@
         this.selected = option;
         this.optionsShown = false;
         this.searchFilter = this.selected.name;
+        this.selectedOptionDropdown = this.selected.id;
         this.$emit('selected', this.selected);
       },
       showOptions(){

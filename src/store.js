@@ -28,9 +28,9 @@ const mutations = {
     state.isLoading = false;
   },
   async GET_LOCATION(state){
-    const data = await fetch('http://ip-api.com/json')
+    const data = await fetch('https://ipapi.co/json')
       .then(res => res.json())
-    state.userLocation = data.countryCode === 'US'? data.region : 'CT'
+    state.userLocation = data.country === 'US'? data.region_code : 'CT'
   }
 }
 export default new Vuex.Store({
