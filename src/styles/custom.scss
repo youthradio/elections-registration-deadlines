@@ -10,7 +10,9 @@ $body-color: $black;
 $gray-900: $black;
 
 $font-family-sans-serif:  'Assistant', sans-serif;
-
+* {
+  color: $blue;
+}
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

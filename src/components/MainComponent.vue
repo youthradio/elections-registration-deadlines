@@ -1,26 +1,59 @@
 <template>
   <div class="row">
-    <div class="col-12">
-      <template v-if="!isLoading">
-        {{ startData }}
-      </template>
-      <template v-else>
-        Loading...
-      </template>
-      <Dropdown
-        :options="optionsData"
-        :disabled="false"
-        default="getUserLocation"
-        placeholder-search="Search for a State"
-        placeholder-select="Select a State"
-        @selected="validateSelection"
-        @filter="getDropdownValues"/>
-      <div class="d-flex align-items-center pl-3 pb-2">
-        <span
-          class="icon-twitter-inverted share-icon m-1 pointer"
-          @click="tweetMessage"/>
+    <template v-if="isLoading">
+      Loading...
+    </template>
+    <template v-else>
+      <div class="col-12">
+        <Dropdown
+          :options="optionsData"
+          :disabled="false"
+          :default-selection="getUserLocation"
+          placeholder-search="Search for a State"
+          placeholder-select="Select a State"
+          @selected="validateSelection"/>
       </div>
-    </div>
+      <div class="col-12">
+        <template v-if="selected">
+          <div class="row">
+            <div class="col-12">
+              <div class="box-message m-3 p-3">
+                <div class="title"> by Mail </div>
+                <div class="date"> {{ selectedData.by_mail | formatDate }} </div>
+                <div class="pointer">
+                  <span class="title mr-3 link"> Register Now </span>
+                  <span class="icon-arrow-right icon-size"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="box-message m-3 p-3">
+                <div class="title"> Online </div>
+                <div class="date"> {{ selectedData.online | formatDate }} </div>
+                <div class="pointer">
+                  <span class="title mr-3 link"> Register Now </span>
+                  <span class="icon-arrow-right icon-size"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="box-message m-3 p-3">
+                <div class="title"> In Person </div>
+                <div class="date"> {{ selectedData.in_person | formatDate }} </div>
+                <div class="pointer">
+                  <span class="title mr-3 link"> Register Now </span>
+                  <span class="icon-arrow-right icon-size"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -32,10 +65,17 @@ export default {
   components:{
     Dropdown
   },
+  filters: {
+    formatDate(date) {
+      return date.split('/')
+                    .slice(0,2)
+                    .join('/')
+    }
+  },
   data() {
     return {
       startData: "HELLO",
-      selected: { name: null, id: null }
+      selected: null
     }
   },
   computed: {
@@ -49,15 +89,24 @@ export default {
           id: e.abbreviation,
         }))
       }
+      return [{
+        name: null,
+        id: null
+      }]
     },
     selectedData(){
       const selectedState = this.selected.id
       return this.$store.state.registrationData
                   .find( e => e.abbreviation === selectedState)
+
     },
     getUserLocation(){
       return this.$store.state.userLocation;
     }
+  },
+  mounted() {
+    //do something after mounting vue instance
+    this.selected
   },
   methods: {
     tweetMessage () {
@@ -68,11 +117,7 @@ export default {
     },
     validateSelection(selection) {
       this.selected = selection;
-    },
-    getDropdownValues(keyword) {
-      console.log('You could refresh options by querying the API with '+keyword);
     }
-
   },
 }
 </script>
@@ -81,4 +126,25 @@ export default {
 <style lang="scss" scoped>
 @import '~@/styles/variables';
 
+.icon-size {
+    font-size: 1rem;
+}
+.box-message {
+  text-align: center;
+  background-color: $green;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-family: 'Roboto Mono', sans-serif;
+    text-transform: uppercase;
+}
+.date {
+  font: 900 3rem/1.05 "Days Sans Black", sans-serif;
+  text-transform: uppercase;
+}
+.link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 </style>

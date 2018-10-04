@@ -13,7 +13,6 @@
       @blur="exit()"
       @click="showOptions()"
       @keyup.native="keyMonitor()">
-
     <!-- Dropdown Menu -->
     <div
       v-show="optionsShown"
@@ -27,19 +26,19 @@
       </div>
     </div>
     <select
-        ref="dropdownSelectbox"
-        v-model="selectedOptionDropdown"
-        class="select">
-        <option
-          value=""
-          selected>{{ placeholderSelect }}</option>
-        <option
-          v-for="(option,i) of options"
-          :key="`select-drop-${i}`"
-          :value="option.id">
-          {{ option.name || option.id || '-' }}
-        </option>
-      </select>
+      ref="dropdownSelectbox"
+      v-model="selectedOptionDropdown"
+      class="select">
+      <option
+        value=""
+        selected>{{ placeholderSelect }}</option>
+      <option
+        v-for="(option,i) of options"
+        :key="`select-drop-${i}`"
+        :value="option.id">
+        {{ option.name || option.id || '-' }}
+      </option>
+    </select>
   </div>
 </template>
 
@@ -54,6 +53,11 @@
           return []
         },
         note: 'Options of dropdown. An array of options with id and name',
+      },
+      defaultSelection: {
+        type: String,
+        required: false,
+        default: 'MA',
       },
       placeholderSearch: {
         type: String,
@@ -107,8 +111,8 @@
         this.selectOption(this.options.find(e => e.id === this.selectedOptionDropdown))
       }
     },
-
     created() {
+      this.selectOption(this.options.find(e => e.id === this.defaultSelection))
       this.$emit('selected', this.selected);
     },
     methods: {
@@ -168,7 +172,7 @@
     font: $font-type;
     width: 100%;
     position: relative;
-    display: flex;
+    display: block;
     margin: auto;
     .dropdown-input {
       background: #fff;
