@@ -1,13 +1,14 @@
 <template>
-  <div
-    id="app"
+  <div 
+    id="app" 
     class="container-fluid">
-    <MainComponent/>
+    <MainComponent />
   </div>
 </template>
 
 <script>
 import MainComponent from './components/MainComponent.vue'
+import ResizeObserver from 'resize-observer-polyfill';
 
 export default {
   name: 'App',
@@ -15,11 +16,24 @@ export default {
     MainComponent
   },
   data() {
-    return {
-    }
+    return {}
   },
   created() {
     this.$store.dispatch('fetchData');
+  },
+  mounted() {
+    const elementRoot = this.$root.$el;
+    const resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const {
+          height
+        } = entry.contentRect;
+        const elementHeight = 'elementHeight:' + height;
+        // console.log(elementHeight);
+        parent.postMessage(elementHeight, '*');
+      }
+    });
+    resizeObserver.observe(elementRoot);
   },
   methods: {
 
@@ -29,5 +43,4 @@ export default {
 
 <style lang="scss">
 @import "./styles/custom";
-
 </style>
