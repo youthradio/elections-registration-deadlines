@@ -29,9 +29,9 @@
               <div class="box-message m-3 p-3">
                 <div class="title"> by Mail </div>
                 <div class="date"> {{ selectedData.by_mail | formatDate }} </div>
-                <div class="pointer">
+                <div>
                   <span
-                    class="title mr-3 link"
+                    class="title mr-3 link pointer"
                     @click="openLink(selectedData.link_to_register_by_mail)"> Register Now </span>
                   <span class="icon-arrow-right icon-size"/>
                 </div>
@@ -43,9 +43,9 @@
               <div class="box-message m-3 p-3">
                 <div class="title"> Online </div>
                 <div class="date"> {{ selectedData.online | formatDate }} </div>
-                <div class="pointer" >
+                <div>
                   <span
-                    class="title mr-3 link"
+                    class="title mr-3 link pointer"
                     @click="openLink(selectedData.link_to_register_online)"> Register Now </span>
                   <span class="icon-arrow-right icon-size"/>
                 </div>
@@ -57,9 +57,9 @@
               <div class="box-message m-3 p-3">
                 <div class="title"> In Person </div>
                 <div class="date"> {{ selectedData.in_person | formatDate }} </div>
-                <div class="pointer">
+                <div>
                   <span
-                    class="title mr-3 link"
+                    class="title mr-3 link pointer"
                     @click="openLink(selectedData.link_to_register_in_person)"> Register Now </span>
                   <span class="icon-arrow-right icon-size"/>
                 </div>
