@@ -30,7 +30,7 @@ const mutations = {
   async GET_LOCATION(state){
     const data = await fetch('https://ipapi.co/json')
       .then(res => res.json())
-    state.userLocation = data.country === 'US'? data.region_code : 'CT'
+    state.userLocation = data.country === 'US'? data.region_code : 'CA'
   }
 }
 export default new Vuex.Store({

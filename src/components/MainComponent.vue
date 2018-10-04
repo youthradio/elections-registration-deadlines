@@ -5,23 +5,34 @@
     </template>
     <template v-else>
       <div class="col-12">
-        <Dropdown
-          :options="optionsData"
-          :disabled="false"
-          :default-selection="getUserLocation"
-          placeholder-search="Search for a State"
-          placeholder-select="Select a State"
-          @selected="validateSelection"/>
+        <select
+          v-model="selectedOption"
+          class="select">
+          <option
+            value=""
+            disabled
+            selected>
+            Select a State
+          </option>
+          <option
+            v-for="(option,i) of optionsData"
+            :key="`select-drop-${i}`"
+            :value="option.id">
+            {{ option.name || option.id || '-' }}
+          </option>
+        </select>
       </div>
       <div class="col-12">
-        <template v-if="selected">
+        <template v-if="selectedOption">
           <div class="row">
             <div class="col-12">
               <div class="box-message m-3 p-3">
                 <div class="title"> by Mail </div>
                 <div class="date"> {{ selectedData.by_mail | formatDate }} </div>
                 <div class="pointer">
-                  <span class="title mr-3 link"> Register Now </span>
+                  <span
+                    class="title mr-3 link"
+                    @click="openLink(selectedData.link_to_register_by_mail)"> Register Now </span>
                   <span class="icon-arrow-right icon-size"/>
                 </div>
               </div>
@@ -32,8 +43,10 @@
               <div class="box-message m-3 p-3">
                 <div class="title"> Online </div>
                 <div class="date"> {{ selectedData.online | formatDate }} </div>
-                <div class="pointer">
-                  <span class="title mr-3 link"> Register Now </span>
+                <div class="pointer" >
+                  <span
+                    class="title mr-3 link"
+                    @click="openLink(selectedData.link_to_register_online)"> Register Now </span>
                   <span class="icon-arrow-right icon-size"/>
                 </div>
               </div>
@@ -45,7 +58,9 @@
                 <div class="title"> In Person </div>
                 <div class="date"> {{ selectedData.in_person | formatDate }} </div>
                 <div class="pointer">
-                  <span class="title mr-3 link"> Register Now </span>
+                  <span
+                    class="title mr-3 link"
+                    @click="openLink(selectedData.link_to_register_in_person)"> Register Now </span>
                   <span class="icon-arrow-right icon-size"/>
                 </div>
               </div>
@@ -58,13 +73,8 @@
 </template>
 
 <script>
-import Dropdown from './Dropdown.vue'
-
 export default {
   name: 'MainComponent',
-  components:{
-    Dropdown
-  },
   filters: {
     formatDate(date) {
       return date.split('/')
@@ -75,7 +85,7 @@ export default {
   data() {
     return {
       startData: "HELLO",
-      selected: null
+      selectedOption: '',
     }
   },
   computed: {
@@ -95,7 +105,7 @@ export default {
       }]
     },
     selectedData(){
-      const selectedState = this.selected.id
+      const selectedState = this.selectedOption
       return this.$store.state.registrationData
                   .find( e => e.abbreviation === selectedState)
 
@@ -104,9 +114,10 @@ export default {
       return this.$store.state.userLocation;
     }
   },
-  mounted() {
-    //do something after mounting vue instance
-    this.selected
+  watch: {
+    getUserLocation(){
+        this.selectedOption = this.getUserLocation
+     }
   },
   methods: {
     tweetMessage () {
@@ -117,6 +128,9 @@ export default {
     },
     validateSelection(selection) {
       this.selected = selection;
+    },
+    openLink(url) {
+      window.open(url, 'blank_')
     }
   },
 }
@@ -146,5 +160,21 @@ export default {
 .link:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+.select {
+  font: 900 3rem/1.05 "Days Sans Black", sans-serif;
+
+  // -webkit-appearance: button;
+  // -moz-appearance: button;
+  height: 100%;
+  width: 100%;
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  // color: #555;
+  font-size: inherit;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>
