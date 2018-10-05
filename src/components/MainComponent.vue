@@ -26,7 +26,7 @@
         <template v-if="selectedOption">
           <div class="row">
             <div class="col-12">
-              <div class="box-message m-3 p-3">
+              <div :class="[new Date() > new Date(selectedData.by_mail)?'box-red':'','box-message m-3 p-3']">
                 <div class="title"> by Mail </div>
                 <div class="date"> {{ selectedData.by_mail | formatDate }} </div>
                 <div>
@@ -40,7 +40,7 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <div class="box-message m-3 p-3">
+              <div :class="[new Date() > new Date(selectedData.link_to_register_online)?'box-red':'','box-message m-3 p-3']">
                 <div class="title"> Online </div>
                 <div class="date"> {{ selectedData.online | formatDate }} </div>
                 <div>
@@ -54,7 +54,7 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <div class="box-message m-3 p-3">
+              <div :class="[new Date() > new Date(selectedData.in_person)?'box-red':'','box-message m-3 p-3']">
                 <div class="title"> In Person </div>
                 <div class="date"> {{ selectedData.in_person | formatDate }} </div>
                 <div>
@@ -146,6 +146,9 @@ export default {
 .box-message {
   text-align: center;
   background-color: $green;
+}
+.box-red {
+  background-color: $red;
 }
 .title {
     font-size: 1.5rem;
