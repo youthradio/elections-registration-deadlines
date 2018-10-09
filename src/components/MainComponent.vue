@@ -151,7 +151,7 @@ export default {
       this.selected = selection;
     },
     openLink(url) {
-      window.open(url, 'blank_')
+      window.open(url, '_blank')
     }
   },
 }
