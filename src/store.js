@@ -17,7 +17,7 @@ const actions = {
 const mutations = {
   async CSV_DATA(state){
     state.isLoading = true;
-    const registrationData = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_QriRYnb-5aqRkRvnSXBbonFQPZl2fQtLBfq54nsuDvLNOvuFkEs8B14tRkHeRrYynKrRs9KMB3y-/pub?gid=0&single=true&output=csv')
+    const registrationData = await fetch('state_registration_deadlines.csv')
       .then(res => res.text())
       .then(res => csvParse(res))
       .then(data => {

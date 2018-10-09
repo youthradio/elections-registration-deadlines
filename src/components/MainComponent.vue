@@ -1,7 +1,11 @@
 <template>
   <div class="row">
     <template v-if="isLoading">
-      Loading...
+      <div class="row">
+        <div class="col-12">
+          Loading...
+        </div>
+      </div>
     </template>
     <template v-else>
       <div class="col-12">
@@ -23,7 +27,7 @@
         </select>
       </div>
       <div class="col-12">
-        <template v-if="selectedOption">
+        <template v-if="selectedData && selectedOption">
           <div class="row">
             <div class="col-12">
               <div :class="[checkDatePassed(selectedData.by_mail)?'box-red':'','box-message m-3 p-3']">
@@ -67,6 +71,14 @@
             </div>
           </div>
         </template>
+        <template v-else>
+          <div class="row">
+            <div class="col-12">
+              Loading...
+            </div>
+          </div>
+        </template>
+
       </div>
     </template>
   </div>
