@@ -159,10 +159,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import '~@/styles/variables';
+@import "~@/styles/variables";
 
 .icon-size {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 .box-message {
   text-align: center;
@@ -172,10 +172,10 @@ export default {
   background-color: $red;
 }
 .title {
-    font-size: 1.5rem;
-    font-weight: 400;
-    font-family: 'Roboto Mono', sans-serif;
-    text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-family: "Roboto Mono", sans-serif;
+  text-transform: uppercase;
 }
 .date {
   font: 900 3rem/1.05 "Days Sans Black", sans-serif;

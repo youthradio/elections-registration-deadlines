@@ -2,12 +2,11 @@ module.exports = {
   css: {
     sourceMap: true
   },
-
-  baseUrl: '',
+  publicPath: '',
   outputDir: undefined,
   assetsDir: 'src/assets',
   runtimeCompiler: undefined,
   productionSourceMap: undefined,
   parallel: undefined,
   lintOnSave: undefined
-}
+};
