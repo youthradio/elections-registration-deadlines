@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-gh-pages" : "BUILD_MODE=gh-pages && npm run build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
