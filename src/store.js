@@ -9,15 +9,17 @@ const state = {
   userLocation: 'CT'
 };
 const actions = {
-  fetchData({ commit }) {
-    commit('CSV_DATA');
+  fetchData({ commit }, fileName) {
+    commit('CSV_DATA', fileName);
     commit('GET_LOCATION');
   }
 };
 const mutations = {
-  async CSV_DATA(state) {
+  async CSV_DATA(state, fileName) {
     state.isLoading = true;
-    const registrationData = await fetch('state_registration_deadlines.csv')
+    const registrationData = await fetch(
+      `${process.env.BASE_URL}years/${fileName}`
+    )
       .then(res => res.text())
       .then(res => csvParse(res))
       .then(data => {

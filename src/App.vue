@@ -19,9 +19,11 @@ export default {
     return {}
   },
   created() {
-    this.$store.dispatch('fetchData');
+    const fileName = this.$route.query.fileName;
+    this.$store.dispatch('fetchData', fileName);
   },
   mounted() {
+
     const elementRoot = this.$root.$el;
     const resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
