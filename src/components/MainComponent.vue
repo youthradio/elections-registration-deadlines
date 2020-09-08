@@ -29,44 +29,43 @@
       <div class="col-12">
         <template v-if="selectedData && selectedOption">
           <div class="row">
-            <div class="col-12">
-              <div :class="[checkDatePassed(selectedData.by_mail)?'box-red':'','box-message m-3 p-3']">
+            <div class="col-md-4">
+              <div :class="[checkDatePassed(selectedData.by_mail)?'box-red':'','box-message rounded mt-3 p-3']">
                 <div class="title"> by Mail </div>
                 <div class="date"> {{ selectedData.by_mail | formatDate }} </div>
                 <div>
                   <span
                     class="title mr-3 link pointer"
                     @click="openLink(selectedData.link_to_register_by_mail)"> Register Now </span>
-                  <span class="icon-arrow-right icon-size"/>
+                  
                 </div>
+                <span class="icon-arrow-right icon-size"/>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <div :class="[checkDatePassed(selectedData.online)?'box-red':'','box-message m-3 p-3']">
+            <div class="col-md-4">
+              <div :class="[checkDatePassed(selectedData.online)?'box-red':'','box-message rounded mt-3 p-3']">
                 <div class="title"> Online </div>
                 <div class="date"> {{ selectedData.online | formatDate }} </div>
                 <div>
                   <span
                     class="title mr-3 link pointer"
                     @click="openLink(selectedData.link_to_register_online)"> Register Now </span>
-                  <span class="icon-arrow-right icon-size"/>
+                  
                 </div>
+                <span class="icon-arrow-right icon-size"/>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <div :class="[checkDatePassed(selectedData.in_person)?'box-red':'','box-message m-3 p-3']">
+            <div class="col-md-4">
+              <div :class="[checkDatePassed(selectedData.in_person)?'box-red':'','box-message rounded mt-3 p-3']">
                 <div class="title"> In Person </div>
                 <div class="date"> {{ selectedData.in_person | formatDate }} </div>
                 <div>
                   <span
                     class="title mr-3 link pointer"
                     @click="openLink(selectedData.link_to_register_in_person)"> Register Now </span>
-                  <span class="icon-arrow-right icon-size"/>
+                  
                 </div>
+                <span class="icon-arrow-right icon-size"/>
               </div>
             </div>
           </div>
@@ -164,9 +163,19 @@ export default {
 .icon-size {
   font-size: 1rem;
 }
+.box-message:before{
+  content: "";
+  display: block;
+  padding-bottom: 10%;
+}
 .box-message {
   text-align: center;
   background-color: $green;
+}
+.box-message:after{
+  content: "";
+  display: block;
+  padding-bottom: 10%;
 }
 .box-red {
   background-color: $red;
