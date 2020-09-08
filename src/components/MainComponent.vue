@@ -170,7 +170,7 @@ export default {
 }
 .box-message {
   text-align: center;
-  background-color: $green;
+  background-color: $red;
 }
 .box-message:after{
   content: "";
