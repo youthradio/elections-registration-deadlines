@@ -39,7 +39,8 @@
                     @click="openLink(selectedData.link_to_register_by_mail)"> Register Now </span>
                   
                 </div>
-                <span class="icon-arrow-right icon-size"/>
+                <Arrow />
+                <!-- <span class="icon-arrow-right icon-size"/> -->
               </div>
             </div>
             <div class="col-md-4">
@@ -52,7 +53,8 @@
                     @click="openLink(selectedData.link_to_register_online)"> Register Now </span>
                   
                 </div>
-                <span class="icon-arrow-right icon-size"/>
+                <Arrow />
+                <!-- <span class="icon-arrow-right icon-size"/> -->
               </div>
             </div>
             <div class="col-md-4">
@@ -65,7 +67,8 @@
                     @click="openLink(selectedData.link_to_register_in_person)"> Register Now </span>
                   
                 </div>
-                <span class="icon-arrow-right icon-size"/>
+                <Arrow />
+                <!-- <span class="icon-arrow-right icon-size"/> -->
               </div>
             </div>
           </div>
@@ -84,8 +87,13 @@
 </template>
 
 <script>
+import Arrow from './ArrowIcon'
+
 export default {
   name: 'MainComponent',
+  components: {
+    Arrow
+  },
   filters: {
     formatDate(date) {
       return date.split('/')
@@ -170,7 +178,7 @@ export default {
 }
 .box-message {
   text-align: center;
-  background-color: $red;
+  background-color: $green;
 }
 .box-message:after{
   content: "";
