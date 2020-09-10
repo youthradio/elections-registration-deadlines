@@ -11,7 +11,7 @@
       <div class="col-12">
         <select
           v-model="selectedOption"
-          class="select">
+          class="select rounded">
           <option
             value=""
             disabled
@@ -203,19 +203,23 @@ export default {
   cursor: pointer;
 }
 .select {
-  font: 900 3rem/1.05 "Days Sans Black", sans-serif;
-
-  // -webkit-appearance: button;
-  // -moz-appearance: button;
-  height: 100%;
+  font: 600 3rem/1.05 "Assistant", sans-serif;
+  background-color: #E0E0E0;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
   width: 100%;
-  border-radius: 2px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-  // color: #555;
+  border: none;
+  //border-radius: 2px;
+  //box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  color: $black;
   font-size: inherit;
-  margin: 0;
+  padding: 0.4rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  option {
+    font: 600 1rem/1.05 "Assistant", sans-serif;
+  }
 }
 </style>
