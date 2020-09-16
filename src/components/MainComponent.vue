@@ -14,7 +14,7 @@
             :key="`select-drop-${i}`"
             :value="option.id"
           >
-            {{ option.name || option.id || "-" }}
+            {{ option.name || option.id || '-' }}
           </option>
         </select>
       </div>
@@ -22,69 +22,74 @@
         <template v-if="selectedData && selectedOption">
           <div class="row">
             <div class="col-md-4">
-              <div
-                :class="[
-                  checkDatePassed(selectedData.by_mail) ? 'box-red' : '',
-                  'box-message rounded mt-3 p-3',
-                ]"
+              <a
+                :href="selectedData.link_to_register_by_mail"
+                target="_blank"
+                rel="nofollow"
+                class="title mr-3 link pointer"
               >
-                <div class="title">by Mail</div>
-                <div class="date">{{ selectedData.by_mail | formatDate }}</div>
-                <div>
-                  <span
-                    class="title mr-3 link pointer"
-                    @click="openLink(selectedData.link_to_register_by_mail)"
-                  >
-                    Register Now
-                  </span>
+                <div
+                  :class="[
+                    checkDatePassed(selectedData.by_mail) ? 'box-red' : '',
+                    'box-message rounded mt-3 p-3',
+                  ]"
+                >
+                  <div class="title">by Mail</div>
+                  <div class="date">
+                    {{ selectedData.by_mail | formatDate }}
+                  </div>
+                  <div>
+                    <Arrow />
+                  </div>
+                  <!-- <span class="icon-arrow-right icon-size"/> -->
                 </div>
-                <Arrow />
-                <!-- <span class="icon-arrow-right icon-size"/> -->
-              </div>
+              </a>
             </div>
             <div class="col-md-4">
-              <div
-                :class="[
-                  checkDatePassed(selectedData.online) ? 'box-red' : '',
-                  'box-message rounded mt-3 p-3',
-                ]"
+              <a
+                class="title mr-3 link pointer"
+                :href="selectedData.link_to_register_online"
+                target="_blank"
+                rel="nofollow"
               >
-                <div class="title">Online</div>
-                <div class="date">{{ selectedData.online | formatDate }}</div>
-                <div>
-                  <span
-                    class="title mr-3 link pointer"
-                    @click="openLink(selectedData.link_to_register_online)"
-                  >
-                    Register Now
-                  </span>
+                <div
+                  :class="[
+                    checkDatePassed(selectedData.online) ? 'box-red' : '',
+                    'box-message rounded mt-3 p-3',
+                  ]"
+                >
+                  <div class="title">Online</div>
+                  <div class="date">{{ selectedData.online | formatDate }}</div>
+                  <div>
+                    <Arrow />
+                  </div>
+                  <!-- <span class="icon-arrow-right icon-size"/> -->
                 </div>
-                <Arrow />
-                <!-- <span class="icon-arrow-right icon-size"/> -->
-              </div>
+              </a>
             </div>
             <div class="col-md-4">
-              <div
-                :class="[
-                  checkDatePassed(selectedData.in_person) ? 'box-red' : '',
-                  'box-message rounded mt-3 p-3',
-                ]"
+              <a
+                :href="selectedData.link_to_register_in_person"
+                target="_blank"
+                rel="nofollow"
+                class="title mr-3 link pointer"
               >
-                <div class="title">In Person</div>
-                <div class="date">
-                  {{ selectedData.in_person | formatDate }}
+                <div
+                  :class="[
+                    checkDatePassed(selectedData.in_person) ? 'box-red' : '',
+                    'box-message rounded mt-3 p-3',
+                  ]"
+                >
+                  <div class="title">In Person</div>
+                  <div class="date">
+                    {{ selectedData.in_person | formatDate }}
+                  </div>
+                  <div>
+                    <Arrow />
+                  </div>
+                  <!-- <span class="icon-arrow-right icon-size"/> -->
                 </div>
-                <div>
-                  <span
-                    class="title mr-3 link pointer"
-                    @click="openLink(selectedData.link_to_register_in_person)"
-                  >
-                    Register Now
-                  </span>
-                </div>
-                <Arrow />
-                <!-- <span class="icon-arrow-right icon-size"/> -->
-              </div>
+              </a>
             </div>
           </div>
         </template>
@@ -99,22 +104,25 @@
 </template>
 
 <script>
-import Arrow from "./ArrowIcon";
+import Arrow from './ArrowIcon';
 
 export default {
-  name: "MainComponent",
+  name: 'MainComponent',
   components: {
     Arrow,
   },
   filters: {
     formatDate(date) {
-      return date.split("/").slice(0, 2).join("/");
+      return date
+        .split('/')
+        .slice(0, 2)
+        .join('/');
     },
   },
   data() {
     return {
-      startData: "HELLO",
-      selectedOption: "",
+      startData: 'HELLO',
+      selectedOption: '',
     };
   },
   computed: {
@@ -155,24 +163,21 @@ export default {
       const now = new Date();
       const old = new Date(date);
       now.setHours(0, 0, 0, 0);
-      if (old == "Invalid Date") {
+      if (old == 'Invalid Date') {
         return true;
       }
       return now > old;
     },
     tweetMessage() {
-      const url = "https://www.youthradio.org/";
+      const url = 'https://www.youthradio.org/';
       const tweet = `Tweet Something : ${url}`;
       const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
         tweet
       )}`;
-      window.open(tweetUrl, "pop", "width=600, height=400, scrollbars=no");
+      window.open(tweetUrl, 'pop', 'width=600, height=400, scrollbars=no');
     },
     validateSelection(selection) {
       this.selected = selection;
-    },
-    openLink(url) {
-      window.open(url, "_blank");
     },
   },
 };
@@ -180,13 +185,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import "~@/styles/variables";
+@import '~@/styles/variables';
 
 .icon-size {
   font-size: 1rem;
 }
 .box-message:before {
-  content: "";
+  content: '';
   display: block;
   padding-bottom: 10%;
 }
@@ -195,7 +200,7 @@ export default {
   background-color: $green;
 }
 .box-message:after {
-  content: "";
+  content: '';
   display: block;
   padding-bottom: 10%;
 }
@@ -205,11 +210,11 @@ export default {
 .title {
   font-size: 1.5rem;
   font-weight: 400;
-  font-family: "Roboto Mono", sans-serif;
+  font-family: 'Roboto Mono', sans-serif;
   text-transform: uppercase;
 }
 .date {
-  font: 900 3rem/1.05 "Days Sans Black", sans-serif;
+  font: 900 3rem/1.05 'Days Sans Black', sans-serif;
   text-transform: uppercase;
 }
 .link:hover {
@@ -217,7 +222,7 @@ export default {
   cursor: pointer;
 }
 .select {
-  font: 600 3rem/1.05 "Assistant", sans-serif;
+  font: 600 3rem/1.05 'Assistant', sans-serif;
   background-color: #e0e0e0;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -232,12 +237,15 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  background-image: url("../assets/icons/arrowSmall.svg");
+  background-image: url('../assets/icons/arrowSmall.svg');
   background-repeat: no-repeat;
   background-position: right 0.7em top 50%, 0 0;
   option {
-    font: 400 1rem/1.05 "Assistant", sans-serif;
+    font: 400 1rem/1.05 'Assistant', sans-serif;
     background-color: #e0e0e0;
   }
+}
+a:hover {
+  text-decoration: none !important;
 }
 </style>
